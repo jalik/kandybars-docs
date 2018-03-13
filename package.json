@@ -2,21 +2,15 @@
   "name": "kandybars-docs",
   "version": "1.0.0",
   "description": "Kandybars Documentation",
-  "main": "dist/index.html",
+  "license": "MIT",
   "private": true,
-  "scripts": {
-    "build": "./node_modules/.bin/webpack --config webpack.config.js",
-    "build:prod": "./node_modules/.bin/webpack --config webpack.config.js -p",
-    "dev": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --hot --watch",
-    "start": "npm run dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
-    "kandybars",
-    "documentation"
+    "docs",
+    "documentation",
+    "kandybars"
   ],
   "author": {
-    "name": "Karl STEIN",
+    "name": "Karl Stein",
     "email": "karl.stein.pro@gmail.com",
     "url": "https://github.com/jalik"
   },
@@ -24,7 +18,18 @@
     "type": "git",
     "url": "https://github.com/jalik/kandybars-docs.git"
   },
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jalik/kandybars-docs/issues"
+  },
+  "main": "dist/index.html",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack",
+    "dev": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --hot --watch",
+    "package": "./node_modules/.bin/webpack -p",
+    "prepare": "npm run package && npm test",
+    "prepublishOnly": "npm test",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "bootstrap": "^4.0.0",
     "jquery": "^3.3.1",
