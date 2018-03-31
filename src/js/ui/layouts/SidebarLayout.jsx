@@ -15,43 +15,74 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import React from "react";
-import {Route, Switch} from "react-router-dom";
-import {VariablePage} from "../pages/VariablePage";
-import {HomePage} from "../pages/HomePage";
-import {MainSidebar} from "../components/MainSidebar";
-import {EvalPage} from "../pages/EvalPage";
-import {IfBlockPage} from "../pages/IfBlockPage";
-import {EachBlockPage} from "../pages/EachBlockPage";
-import {HelperPage} from "../pages/HelperPage";
-import {PartialPage} from "../pages/PartialPage";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import MainSidebar from '../components/MainSidebar';
+import EachBlockPage from '../pages/EachBlockPage';
+import EvalPage from '../pages/EvalPage';
+import HelperPage from '../pages/HelperPage';
+import HomePage from '../pages/HomePage';
+import IfBlockPage from '../pages/IfBlockPage';
+import PartialPage from '../pages/PartialPage';
+import VariablePage from '../pages/VariablePage';
 
-export class SidebarLayout extends React.Component {
-    render() {
-        return (
-            <div id="layout" className="layout layout-sidebar">
-                <div id="body">
-                    <MainSidebar/>
-                    <div id="content">
-                        <Switch>
-                            <Route exact path="/" component={HomePage}/>
-                            <Route exact path="/syntax/each" component={EachBlockPage}/>
-                            <Route exact path="/syntax/eval" component={EvalPage}/>
-                            <Route exact path="/syntax/helper" component={HelperPage}/>
-                            <Route exact path="/syntax/if" component={IfBlockPage}/>
-                            <Route exact path="/syntax/partial" component={PartialPage}/>
-                            <Route exact path="/syntax/variable" component={VariablePage}/>
-                        </Switch>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+function SidebarLayout() {
+  return (
+    <div
+      id="layout"
+      className="layout layout-sidebar"
+    >
+      <div id="body">
+        <MainSidebar />
+        <div id="content">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={HomePage}
+            />
+            <Route
+              exact
+              path="/syntax/each"
+              component={EachBlockPage}
+            />
+            <Route
+              exact
+              path="/syntax/eval"
+              component={EvalPage}
+            />
+            <Route
+              exact
+              path="/syntax/helper"
+              component={HelperPage}
+            />
+            <Route
+              exact
+              path="/syntax/if"
+              component={IfBlockPage}
+            />
+            <Route
+              exact
+              path="/syntax/partial"
+              component={PartialPage}
+            />
+            <Route
+              exact
+              path="/syntax/variable"
+              component={VariablePage}
+            />
+          </Switch>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default SidebarLayout;

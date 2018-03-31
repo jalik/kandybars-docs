@@ -15,68 +15,69 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import Prism from "prismjs";
-import PropTypes from "prop-types";
-import React from "react";
-// Load prism
-import "prismjs/themes/prism.css";
-import "prismjs/themes/prism-okaidia.css";
+import Prism from 'prismjs';
 // Load languages syntax
-import "prismjs/components/prism-handlebars";
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-json";
-import "prismjs/components/prism-markup";
+import 'prismjs/components/prism-handlebars';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-markup';
+import 'prismjs/themes/prism-okaidia.css';
+// Load prism
+import 'prismjs/themes/prism.css';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-export class PreviewCode extends React.Component {
+class PreviewCode extends React.Component {
+  constructor(props) {
+    super(props);
+    this.codeRef = null;
+    this.handleContentChanged = this.handleContentChanged.bind(this);
+  }
 
-    constructor(props) {
-        super(props);
-        this.codeRef = null;
-        this.handleContentChanged = this.handleContentChanged.bind(this);
+  handleContentChanged() {
+    if (typeof this.props.onContentChanged === 'function') {
+      this.props.onContentChanged(this.codeRef.innerText);
     }
+  }
 
-    handleContentChanged() {
-        if (typeof this.props.onContentChanged === "function") {
-            this.props.onContentChanged(this.codeRef.innerText);
-        }
+  render() {
+    let content = null;
+
+    try {
+      content = Prism.highlight(this.props.content, Prism.languages[this.props.language]);
+    } catch (err) {
+      console.error(err);
     }
-
-    render() {
-        let content = null;
-        let error = null;
-
-        try {
-            content = Prism.highlight(this.props.content, Prism.languages[this.props.language]);
-        } catch (err) {
-            console.error(err);
-        }
-        return (
-            <code className={"code line-numbers language-" + this.props.language}
-                  contentEditable={this.props.contentEditable}
-                  onKeyDown={this.handleContentChanged}
-                  onKeyUp={this.handleContentChanged}
-                  ref={(code) => this.codeRef = code}
-                  dangerouslySetInnerHTML={{__html: content}}>
-            </code>
-        );
-    }
+    return (
+      <code
+        className={`code line-numbers language-${this.props.language}`}
+        contentEditable={this.props.contentEditable}
+        onKeyDown={this.handleContentChanged}
+        onKeyUp={this.handleContentChanged}
+        ref={(code) => { this.codeRef = code; }}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+    );
+  }
 }
 
 PreviewCode.defaultProps = {
-    content: "",
-    contentEditable: false
+  content: '',
+  contentEditable: false,
 };
 
 PreviewCode.propTypes = {
-    content: PropTypes.string,
-    contentEditable: PropTypes.boolean,
-    language: PropTypes.string.required,
-    onContentChanged: PropTypes.function
+  content: PropTypes.string,
+  contentEditable: PropTypes.bool,
+  language: PropTypes.string.isRequired,
+  onContentChanged: PropTypes.func,
 };
+
+export default PreviewCode;

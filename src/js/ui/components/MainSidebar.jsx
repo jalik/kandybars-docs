@@ -15,57 +15,119 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import React from "react";
-import {FormattedMessage} from "react-intl";
-import {Link, NavLink} from "react-router-dom";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import { Link, NavLink } from 'react-router-dom';
 
-class MenuItem extends React.Component {
-    render() {
-        return (
-            <NavLink to={this.props.url} className="sidebar-menu-link" activeClassName="active">
-                <span className={this.props.icon}/>
-                <span>{this.props.name}</span>
-            </NavLink>
-        );
-    }
+const Package = require('../../../../package.json');
+
+function MenuItem(props) {
+  return (
+    <NavLink
+      to={props.url}
+      className="sidebar-menu-link"
+      activeClassName="active"
+    >
+      <span className={props.icon} />
+      <span>{props.name}</span>
+    </NavLink>
+  );
 }
 
-export class MainSidebar extends React.Component {
-    render() {
-        const Package = require("../../../../package.json");
-        return (
-            <aside id="sidebar" className="sidebar">
-                <div className="sidebar-header">
-                    <Link to="/" className="sidebar-brand">
-                        <span className="sidebar-logo">{Package.name}</span>
-                        <sup className="sidebar-version">{Package.version}</sup>
-                    </Link>
-                </div>
-                <nav className="sidebar-nav">
-                    <div className="sidebar-menu" id="components-menu">
-                        <h3><FormattedMessage id="syntax" defaultMessage="Syntax"/></h3>
-                        <MenuItem name={<FormattedMessage id="variable" defaultMessage="Variable"/>}
-                                  url="/syntax/variable"/>
-                        <MenuItem name={<FormattedMessage id="eval" defaultMessage="Eval"/>}
-                                  url="/syntax/eval"/>
-                        <MenuItem name={<FormattedMessage id="if" defaultMessage="If"/>}
-                                  url="/syntax/if"/>
-                        <MenuItem name={<FormattedMessage id="each" defaultMessage="Each"/>}
-                                  url="/syntax/each"/>
-                        <MenuItem name={<FormattedMessage id="helper" defaultMessage="Helper"/>}
-                                  url="/syntax/helper"/>
-                        <MenuItem name={<FormattedMessage id="partial" defaultMessage="Partial"/>}
-                                  url="/syntax/partial"/>
-                    </div>
-                </nav>
-            </aside>
-        );
-    }
+MenuItem.defaultProps = {
+  icon: '',
+};
+
+MenuItem.propTypes = {
+  icon: PropTypes.string,
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]).isRequired,
+  url: PropTypes.string.isRequired,
+};
+
+function MainSidebar() {
+  return (
+    <aside
+      id="sidebar"
+      className="sidebar"
+    >
+      <div className="sidebar-header">
+        <Link
+          to="/"
+          href="/"
+          className="sidebar-brand"
+        >
+          <span className="sidebar-logo">{Package.name}</span>
+          <sup className="sidebar-version">{Package.version}</sup>
+        </Link>
+      </div>
+      <nav className="sidebar-nav">
+        <div
+          className="sidebar-menu"
+          id="components-menu"
+        >
+          <h3>
+            <FormattedMessage
+              id="syntax"
+              defaultMessage="Syntax"
+            />
+          </h3>
+          <MenuItem
+            name={<FormattedMessage
+              id="variable"
+              defaultMessage="Variable"
+            />}
+            url="/syntax/variable"
+          />
+          <MenuItem
+            name={<FormattedMessage
+              id="eval"
+              defaultMessage="Eval"
+            />}
+            url="/syntax/eval"
+          />
+          <MenuItem
+            name={<FormattedMessage
+              id="if"
+              defaultMessage="If"
+            />}
+            url="/syntax/if"
+          />
+          <MenuItem
+            name={<FormattedMessage
+              id="each"
+              defaultMessage="Each"
+            />}
+            url="/syntax/each"
+          />
+          <MenuItem
+            name={<FormattedMessage
+              id="helper"
+              defaultMessage="Helper"
+            />}
+            url="/syntax/helper"
+          />
+          <MenuItem
+            name={<FormattedMessage
+              id="partial"
+              defaultMessage="Partial"
+            />}
+            url="/syntax/partial"
+          />
+        </div>
+      </nav>
+    </aside>
+  );
 }
+
+export default MainSidebar;

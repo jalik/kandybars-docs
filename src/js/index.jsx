@@ -15,37 +15,38 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
 
-import React from "react";
-import ReactDOM from "react-dom";
-import {App} from "./App";
-import {IntlProvider} from "react-intl";
-
 // Load bootstrap
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { IntlProvider } from 'react-intl';
+import '../less/responsive-sm.less';
 // Load styles
-import "../less/styles.less";
-import "../less/responsive-sm.less";
+import '../less/styles.less';
+import App from './App';
 
 // Define user"s language. Different browsers have the user locale defined
 // on different fields on the `navigator` object, so we make sure to account
 // for these different by checking all of them
-const language = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage;
+const language = (navigator.languages && navigator.languages[0]) || navigator.language;
 
 // Split locales with a region code
 const currentLanguage = language.toLowerCase().split(/[_-]+/)[0];
 
 ReactDOM.render(
-    <IntlProvider locale={currentLanguage} defaultLocale="fr">
-        <App/>
-    </IntlProvider>,
-    document.getElementById("root")
+  <IntlProvider
+    locale={currentLanguage}
+    defaultLocale="fr"
+  >
+    <App />
+  </IntlProvider>,
+  document.getElementById('root'),
 );
