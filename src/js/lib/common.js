@@ -23,12 +23,10 @@
  */
 
 export default {
-
   decodeHtmlEntities(html) {
-    html = html.replace(/<br\/?>/g, '\r\n');
-    html = html.replace(/&lt;/g, '<');
-    html = html.replace(/&gt;/g, '>');
-    html = html.replace(/&amp;/g, '&');
-    return html;
+    return html.replace(/<br\/?>/g, '\r\n')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&amp;/g, '&');
   },
 };
