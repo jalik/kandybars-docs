@@ -30,7 +30,7 @@
     "package": "./node_modules/.bin/webpack -p",
     "prepare": "npm run package && npm test",
     "prepublishOnly": "npm test",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Warning: no test specified\" && exit 0"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
