@@ -50,6 +50,7 @@ module.exports = {
   entry: {
     bundle: path.join(paths.src, 'js', 'index.jsx'),
   },
+  mode: 'production',
   output: {
     libraryTarget: 'umd',
     path: paths.build,
