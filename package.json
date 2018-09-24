@@ -24,12 +24,12 @@
   "main": "dist/index.html",
   "scripts": {
     "build": "./node_modules/.bin/webpack",
-    "dev": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --hot --watch",
     "lint": "./node_modules/.bin/eslint .",
     "lint-fix": "./node_modules/.bin/eslint --fix .",
     "package": "./node_modules/.bin/webpack -p",
     "prepare": "npm run package && npm test",
     "prepublishOnly": "npm test",
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --hot --watch",
     "test": "echo \"Warning: no test specified\" && exit 0"
   },
   "dependencies": {
