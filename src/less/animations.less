@@ -22,31 +22,11 @@
  * SOFTWARE.
  */
 
-// Load bootstrap
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { IntlProvider } from 'react-intl';
-import '../less/animations.less';
-import '../less/responsive.less';
-import '../less/styles.less';
-import App from './App';
-
-// Define user"s language. Different browsers have the user locale defined
-// on different fields on the `navigator` object, so we make sure to account
-// for these different by checking all of them
-const language = (navigator.languages && navigator.languages[0]) || navigator.language;
-
-// Split locales with a region code
-const currentLanguage = language.toLowerCase().split(/[_-]+/)[0];
-
-ReactDOM.render(
-  <IntlProvider
-    locale={currentLanguage}
-    defaultLocale="fr"
-  >
-    <App />
-  </IntlProvider>,
-  document.getElementById('root'),
-);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

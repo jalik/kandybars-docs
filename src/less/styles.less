@@ -22,13 +22,13 @@
  * SOFTWARE.
  */
 
-@secondary-color: #72C6FF;
+@primary-color: #72C6FF;
 @sidebar-background-color: #333333;
-@sidebar-padding: 10px;
+@sidebar-padding: 15px;
 @sidebar-text-color: rgba(200, 200, 200, 1.0);
 
 a {
-  color: #57A0BE;
+  color: @primary-color;
   text-decoration: none;
 }
 
@@ -46,6 +46,7 @@ em {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto Condensed", sans-serif;
+  font-weight: lighter;
 }
 
 h1 {
@@ -76,11 +77,6 @@ fieldset {
   margin: 10px 0;
 }
 
-legend {
-  font-weight: bold;
-  margin: 10px 0;
-}
-
 p {
   line-height: 1.3em;
   margin: 1em auto;
@@ -99,7 +95,6 @@ small {
 .sandbox code.code,
 .sandbox code.json {
   background-color: #EEEEEE;
-  //border: solid 1px #555555;
   color: rgba(0, 0, 0, 0.6);
   display: block;
   font-family: monospace;
@@ -167,7 +162,7 @@ small {
   font-size: 1em;
   font-weight: bold;
   margin: 0;
-  padding: (@sidebar-padding / 2) @sidebar-padding;
+  padding: 5px @sidebar-padding;
   text-transform: uppercase;
   transition: all 0.1s;
 }
@@ -180,8 +175,7 @@ small {
 }
 
 .sidebar .sidebar-menu-link.active {
-  //background-color: lighten(@sidebar-background-color, 2%);
-  color: @secondary-color;
+  color: @primary-color;
 }
 
 .sidebar .sidebar-menu-link > * {
@@ -195,13 +189,19 @@ small {
 
 /* CONTENT */
 
+#content > * {
+  -webkit-animation: fadeIn 0.3s;
+  -o-animation: fadeIn 0.3s;
+  animation: fadeIn 0.3s;
+}
+
 #content h1 {
   margin-top: 0;
   padding: 0 0 20px 0;
 }
 
 #content h2 {
-  color: #666666;
+  color: @primary-color;
   font-size: 2.5em;
   margin-top: 0;
   padding: 0 0 20px 0;
