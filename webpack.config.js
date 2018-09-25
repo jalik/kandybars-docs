@@ -25,6 +25,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
 const Package = require('./package.json');
 
 const isDevMode = process.env.NODE_ENV !== 'production';
@@ -79,9 +81,11 @@ module.exports = {
       template: path.join(srcPath, 'html', 'index.html'),
       title: `${Package.name} v${Package.version}`,
     }),
-    new MiniCssExtractPlugin({
-      filename: path.join(assetsDir, (isDevMode ? '[name].css' : '[name].[hash].css')),
-      chunkFilename: path.join(assetsDir, (isDevMode ? '[id].css' : '[id].[hash].css')),
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true,
     }),
   ],
   resolve: {
