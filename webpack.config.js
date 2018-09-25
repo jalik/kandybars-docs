@@ -23,61 +23,48 @@
  */
 
 const path = require('path');
-// const Package = require("./package.json");
-// const isProd = process.argv.indexOf("-p") !== -1;
-// const isHTTPS = process.argv.indexOf("--https") !== -1;
-// const filename = Package.name + "-aio" + (isProd ? ".min" : "");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Package = require('./package.json');
 
-const paths = {
-  build: path.join(__dirname, 'dist', 'assets'),
-  dist: path.join(__dirname, 'dist'),
-  src: path.join(__dirname, 'src'),
-};
-
-function dirname(dirPath) {
-  return dirPath.split(/[/\\]/).pop();
-}
+const isDevMode = process.env.NODE_ENV !== 'production';
+const assetsDir = 'assets';
+const distPath = path.resolve(__dirname, 'dist');
+const srcPath = path.resolve(__dirname, 'src');
 
 module.exports = {
   devServer: {
-    hot: true,
-    port: 3000,
-    contentBase: paths.dist,
-    publicPath: `/${dirname(paths.build)}`,
-    watchContentBase: true,
+    port: 8080,
   },
   entry: {
-    bundle: path.join(paths.src, 'js', 'index.jsx'),
+    bundle: path.join(srcPath, 'js', 'index.jsx'),
   },
-  mode: 'production',
   output: {
     libraryTarget: 'umd',
-    path: paths.build,
-    filename: path.join('js', '[name].js'),
+    path: distPath,
+    filename: path.join(assetsDir, '[name].js'),
   },
   module: {
     rules: [
       {
-        test: /\.(eot|gif|png|svg|ttf|woff|woff2)$/,
-        loader: 'url-loader?limit=100000',
+        test: /\.(gif|png|svg|eot|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: assetsDir,
+            },
+          },
+        ],
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader',
-        }),
-      },
-      {
-        test: /\.less$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            { loader: 'css-loader' },
-            { loader: 'less-loader' },
-          ],
-        }),
+        test: /\.(css|less|sass|scss)$/,
+        use: [
+          (isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader),
+          'css-loader',
+          'less-loader',
+        ],
       },
       {
         test: /\.(js|jsx)$/,
@@ -87,13 +74,18 @@ module.exports = {
     ],
   },
   plugins: [
-    new ExtractTextPlugin({
-      filename: path.join('css', '[name].css'),
-      allChunks: true,
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(srcPath, 'html', 'index.html'),
+      title: `${Package.name} v${Package.version}`,
+    }),
+    new MiniCssExtractPlugin({
+      filename: path.join(assetsDir, (isDevMode ? '[name].css' : '[name].[hash].css')),
+      chunkFilename: path.join(assetsDir, (isDevMode ? '[id].css' : '[id].[hash].css')),
     }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: [paths.src, 'node_modules'],
+    modules: [srcPath, 'node_modules'],
   },
 };
