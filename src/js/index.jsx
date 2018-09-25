@@ -28,8 +28,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { IntlProvider } from 'react-intl';
-import '../less/responsive-sm.less';
-// Load styles
+import '../less/responsive.less';
 import '../less/styles.less';
 import App from './App';
 

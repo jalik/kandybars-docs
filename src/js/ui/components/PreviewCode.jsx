@@ -59,9 +59,11 @@ class PreviewCode extends React.Component {
       <code
         className={`code line-numbers language-${this.props.language}`}
         contentEditable={this.props.contentEditable}
+        tabIndex={0}
         onKeyDown={this.handleContentChanged}
         onKeyUp={this.handleContentChanged}
         ref={(code) => { this.codeRef = code; }}
+        role="textbox"
         dangerouslySetInnerHTML={{ __html: content }}
       />
     );
@@ -71,6 +73,7 @@ class PreviewCode extends React.Component {
 PreviewCode.defaultProps = {
   content: '',
   contentEditable: false,
+  onContentChanged: null,
 };
 
 PreviewCode.propTypes = {

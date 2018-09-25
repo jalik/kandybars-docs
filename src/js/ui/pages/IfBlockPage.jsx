@@ -79,41 +79,47 @@ class IfBlockPage extends React.Component {
         <div className="sandbox">
           <div className="row">
             <div className="col-md-4">
-              <h4><FormattedMessage
-                id="json"
-                defaultMessage="JSON"
-              />
-              </h4>
-              <PreviewCode
-                content={JSON.stringify(this.json, null, 2)}
-                contentEditable
-                language="json"
-                onContentChanged={this.handleJsonChanged}
-              />
+              <section>
+                <h4><FormattedMessage
+                  id="json"
+                  defaultMessage="JSON"
+                />
+                </h4>
+                <PreviewCode
+                  content={JSON.stringify(this.json, null, 2)}
+                  contentEditable
+                  language="json"
+                  onContentChanged={this.handleJsonChanged}
+                />
+              </section>
             </div>
             <div className="col-md-4">
-              <h4><FormattedMessage
-                id="html"
-                defaultMessage="HTML"
-              />
-              </h4>
-              <PreviewCode
-                content={this.html}
-                contentEditable
-                language="handlebars"
-                onContentChanged={this.handleCodeChanged}
-              />
+              <section>
+                <h4><FormattedMessage
+                  id="html"
+                  defaultMessage="HTML"
+                />
+                </h4>
+                <PreviewCode
+                  content={this.html}
+                  contentEditable
+                  language="handlebars"
+                  onContentChanged={this.handleCodeChanged}
+                />
+              </section>
             </div>
             <div className="col-md-4">
-              <h4><FormattedMessage
-                id="result"
-                defaultMessage="Result"
-              />
-              </h4>
-              <PreviewCode
-                content={this.renderTemplate()}
-                language="markup"
-              />
+              <section>
+                <h4><FormattedMessage
+                  id="result"
+                  defaultMessage="Result"
+                />
+                </h4>
+                <PreviewCode
+                  content={this.renderTemplate()}
+                  language="markup"
+                />
+              </section>
             </div>
           </div>
         </div>
