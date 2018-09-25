@@ -50,7 +50,7 @@ function SidebarLayout() {
             />
             <Route
               exact
-              path="/syntax/each"
+              path="/syntax/loop"
               component={EachBlockPage}
             />
             <Route
@@ -65,7 +65,7 @@ function SidebarLayout() {
             />
             <Route
               exact
-              path="/syntax/if"
+              path="/syntax/condition"
               component={IfBlockPage}
             />
             <Route

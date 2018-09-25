@@ -30,14 +30,15 @@ import { Link, NavLink } from 'react-router-dom';
 const Package = require('../../../../package.json');
 
 function MenuItem(props) {
+  const { url, icon, name } = props;
   return (
     <NavLink
-      to={props.url}
+      to={url}
       className="sidebar-menu-link"
       activeClassName="active"
     >
-      <span className={props.icon} />
-      <span>{props.name}</span>
+      <span className={icon} />
+      <span>{name}</span>
     </NavLink>
   );
 }
@@ -83,45 +84,57 @@ function MainSidebar() {
             />
           </h3>
           <MenuItem
-            name={<FormattedMessage
-              id="variable"
-              defaultMessage="Variable"
-            />}
+            name={(
+              <FormattedMessage
+                id="variable"
+                defaultMessage="Variable"
+              />
+            )}
             url="/syntax/variable"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="eval"
-              defaultMessage="Eval"
-            />}
+            name={(
+              <FormattedMessage
+                id="eval"
+                defaultMessage="Eval"
+              />
+            )}
             url="/syntax/eval"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="if"
-              defaultMessage="If"
-            />}
-            url="/syntax/if"
+            name={(
+              <FormattedMessage
+                id="condition"
+                defaultMessage="Condition"
+              />
+            )}
+            url="/syntax/condition"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="each"
-              defaultMessage="Each"
-            />}
-            url="/syntax/each"
+            name={(
+              <FormattedMessage
+                id="loop"
+                defaultMessage="Loop"
+              />
+            )}
+            url="/syntax/loop"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="helper"
-              defaultMessage="Helper"
-            />}
+            name={(
+              <FormattedMessage
+                id="helper"
+                defaultMessage="Helper"
+              />
+            )}
             url="/syntax/helper"
           />
           <MenuItem
-            name={<FormattedMessage
-              id="partial"
-              defaultMessage="Partial"
-            />}
+            name={(
+              <FormattedMessage
+                id="partial"
+                defaultMessage="Partial"
+              />
+            )}
             url="/syntax/partial"
           />
         </div>

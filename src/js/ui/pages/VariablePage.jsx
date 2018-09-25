@@ -61,6 +61,7 @@ class VariablePage extends React.Component {
     try {
       result = kandybars.renderHTML(html, json);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
       result = error;
     }
@@ -68,25 +69,27 @@ class VariablePage extends React.Component {
   }
 
   render() {
+    const { json, html } = this;
     return (
       <section>
-        <h2><FormattedMessage
-          id="variable"
-          defaultMessage="Variable"
-        />
+        <h2>
+          <FormattedMessage
+            id="variable"
+            defaultMessage="Variable"
+          />
         </h2>
-
         <div className="sandbox">
           <div className="row d-flex align-items-stretch">
             <div className="col-md-4">
               <section>
-                <h4><FormattedMessage
-                  id="json"
-                  defaultMessage="JSON"
-                />
+                <h4>
+                  <FormattedMessage
+                    id="json"
+                    defaultMessage="JSON"
+                  />
                 </h4>
                 <PreviewCode
-                  content={JSON.stringify(this.state.json, null, 2)}
+                  content={JSON.stringify(json, null, 2)}
                   contentEditable
                   language="json"
                   onContentChanged={this.handleJsonChanged}
@@ -95,13 +98,14 @@ class VariablePage extends React.Component {
             </div>
             <div className="col-md-4">
               <section>
-                <h4><FormattedMessage
-                  id="html"
-                  defaultMessage="HTML"
-                />
+                <h4>
+                  <FormattedMessage
+                    id="html"
+                    defaultMessage="HTML"
+                  />
                 </h4>
                 <PreviewCode
-                  content={this.state.html}
+                  content={html}
                   contentEditable
                   language="handlebars"
                   onContentChanged={this.handleCodeChanged}
@@ -110,10 +114,11 @@ class VariablePage extends React.Component {
             </div>
             <div className="col-md-4">
               <section>
-                <h4><FormattedMessage
-                  id="result"
-                  defaultMessage="Result"
-                />
+                <h4>
+                  <FormattedMessage
+                    id="result"
+                    defaultMessage="Result"
+                  />
                 </h4>
                 <PreviewCode
                   content={this.renderTemplate()}
