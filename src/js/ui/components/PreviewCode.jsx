@@ -23,13 +23,12 @@
  */
 
 import Prism from 'prismjs';
-// Load languages syntax
 import 'prismjs/components/prism-handlebars';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-markup-templating';
 import 'prismjs/themes/prism-okaidia.css';
-// Load prism
 import 'prismjs/themes/prism.css';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -42,23 +41,25 @@ class PreviewCode extends React.Component {
   }
 
   handleContentChanged() {
-    if (typeof this.props.onContentChanged === 'function') {
-      this.props.onContentChanged(this.codeRef.innerText);
+    const { onContentChanged } = this.props;
+    if (typeof onContentChanged === 'function') {
+      onContentChanged(this.codeRef.innerText);
     }
   }
 
   render() {
-    let content = null;
+    let { content } = this.props;
+    const { contentEditable, language } = this.props;
 
     try {
-      content = Prism.highlight(this.props.content, Prism.languages[this.props.language]);
+      content = Prism.highlight(content, Prism.languages[language]);
     } catch (err) {
       console.error(err);
     }
     return (
       <code
-        className={`code line-numbers language-${this.props.language}`}
-        contentEditable={this.props.contentEditable}
+        className={`code line-numbers language-${language}`}
+        contentEditable={contentEditable}
         tabIndex={0}
         onKeyDown={this.handleContentChanged}
         onKeyUp={this.handleContentChanged}
