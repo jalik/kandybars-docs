@@ -23,14 +23,14 @@
   },
   "main": "dist/index.html",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --mode=development",
-    "lint": "./node_modules/.bin/eslint .",
-    "lint-fix": "./node_modules/.bin/eslint --fix .",
-    "package": "./node_modules/.bin/webpack --mode=production",
+    "build": "npx webpack --mode=development",
+    "lint": "npx eslint .",
+    "lint-fix": "npx eslint --fix .",
+    "package": "npx webpack --mode=production",
     "prepare": "npm run package && npm test",
     "prepublishOnly": "npm test",
-    "start": "./node_modules/.bin/webpack-dev-server --mode=development",
-    "watch": "./node_modules/.bin/webpack --mode=development --watch"
+    "start": "npx webpack-dev-server --mode=development",
+    "watch": "npx webpack --mode=development --watch"
   },
   "dependencies": {
     "bootstrap": "^4.1.3",
