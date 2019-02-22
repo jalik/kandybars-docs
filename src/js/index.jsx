@@ -27,9 +27,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { IntlProvider } from 'react-intl';
-import '../less/animations.less';
-import '../less/responsive.less';
-import '../less/styles.less';
+import '../scss/animations.scss';
+import '../scss/responsive.scss';
+import '../scss/styles.scss';
 import App from './App';
 
 // Define user"s language. Different browsers have the user locale defined

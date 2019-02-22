@@ -22,13 +22,13 @@
  * SOFTWARE.
  */
 
-@primary-color: #72C6FF;
-@sidebar-background-color: #333333;
-@sidebar-padding: 15px;
-@sidebar-text-color: rgba(200, 200, 200, 1.0);
+$primary-color: #72C6FF;
+$sidebar-background-color: #333333;
+$sidebar-padding: 15px;
+$sidebar-text-color: rgba(200, 200, 200, 1.0);
 
 a {
-  color: @primary-color;
+  color: $primary-color;
   text-decoration: none;
 }
 
@@ -107,11 +107,11 @@ small {
 // SIDEBAR
 
 .sidebar {
-  background-color: @sidebar-background-color;
+  background-color: $sidebar-background-color;
 }
 
 .sidebar-header {
-  padding: @sidebar-padding;
+  padding: $sidebar-padding;
 }
 
 .sidebar-header .sidebar-brand {
@@ -141,7 +141,7 @@ small {
 // Sidebar Menu
 
 .sidebar .sidebar-menu {
-  border-top: solid 1px lighten(@sidebar-background-color, 5%);
+  border-top: solid 1px lighten($sidebar-background-color, 5%);
   font-size: 0.9em;
 }
 
@@ -151,7 +151,7 @@ small {
   font-size: 1.2em;
   font-weight: normal;
   margin: 10px 0;
-  padding: 0 @sidebar-padding;
+  padding: 0 $sidebar-padding;
   text-transform: uppercase;
 }
 
@@ -162,20 +162,20 @@ small {
   font-size: 1em;
   font-weight: bold;
   margin: 0;
-  padding: 5px @sidebar-padding;
+  padding: 5px $sidebar-padding;
   text-transform: uppercase;
   transition: all 0.1s;
 }
 
 .sidebar .sidebar-menu-link:focus,
 .sidebar .sidebar-menu-link:hover {
-  background-color: lighten(@sidebar-background-color, 5%);
-  color: rgb(255, 255, 255, 1.0);
+  background-color: lighten($sidebar-background-color, 5%);
+  color: #FFFFFF;
   text-decoration: none;
 }
 
 .sidebar .sidebar-menu-link.active {
-  color: @primary-color;
+  color: $primary-color;
 }
 
 .sidebar .sidebar-menu-link > * {
@@ -201,7 +201,7 @@ small {
 }
 
 #content h2 {
-  color: @primary-color;
+  color: $primary-color;
   font-size: 2.5em;
   margin-top: 0;
   padding: 0 0 20px 0;

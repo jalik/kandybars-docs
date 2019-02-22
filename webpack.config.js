@@ -36,7 +36,7 @@ const srcPath = path.resolve(__dirname, 'src');
 
 module.exports = {
   devServer: {
-    port: 8080,
+    port: 3000,
   },
   entry: {
     bundle: path.join(srcPath, 'js', 'index.jsx'),
@@ -61,11 +61,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.(css|less|sass|scss)$/,
+        test: /\.(css|scss)$/,
         use: [
           (isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader),
           'css-loader',
-          'less-loader',
+          'sass-loader',
         ],
       },
       {
