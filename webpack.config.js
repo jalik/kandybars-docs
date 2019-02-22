@@ -25,7 +25,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const Package = require('./package.json');
 
@@ -80,12 +79,6 @@ module.exports = {
       filename: 'index.html',
       template: path.join(srcPath, 'html', 'index.html'),
       title: `${Package.name} v${Package.version}`,
-    }),
-    new WorkboxPlugin.GenerateSW({
-      // these options encourage the ServiceWorkers to get in there fast
-      // and not allow any straggling "old" SWs to hang around
-      clientsClaim: true,
-      skipWaiting: true,
     }),
   ],
   resolve: {
