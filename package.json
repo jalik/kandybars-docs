@@ -37,7 +37,7 @@
     "jquery": "^3.5.1",
     "kandybars": "^0.9.10",
     "popper.js": "^1.14.7",
-    "prismjs": "^1.22.0",
+    "prismjs": "^1.23.0",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
